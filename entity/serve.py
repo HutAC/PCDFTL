@@ -16,7 +16,7 @@ import torch.nn.functional as F
 import os
 import copy
 
-# There's no server in this framework, 
+# There's no server in this framework,
 # it's just what the code calls it
 class Serve(ServeBase):
     def __init__(self, args, clients, source_nums, device, model_dir, index, recorder=None):
