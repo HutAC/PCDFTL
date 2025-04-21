@@ -4,13 +4,10 @@
 @Author : AC
 @File : analyzer.py
 @Software : PyCharm
-#  该文件是用于结果分析
 """
 import numpy as np
 from sklearn.manifold import TSNE
 import pickle
-import matplotlib.pyplot as plt
-import matplotlib
 import warnings
 import logging
 from utils.args import analyze_args, log_args
