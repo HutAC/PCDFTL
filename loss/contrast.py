@@ -10,8 +10,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-# SimCLR官方的
-# 用第二个对比损失后面需要用交叉熵损失
 class ContrastiveLoss(nn.Module):
     def __init__(self, args, device, n_views=2, tp=0.07):
         super().__init__()

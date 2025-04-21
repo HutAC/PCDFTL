@@ -18,12 +18,9 @@ import copy
 from utils.analyzer import Recorder
 from task import get_state
 
-# 获取文件名（不包含路径）
 file_name = os.path.basename(__file__).replace(".py", "")
-
 modelSaveDir = os.path.join("./checkPoint", file_name)
 logSaveDir = os.path.join("./logs", file_name)
-
 
 def main(args):
     # Consider the gpu or cpu condition
@@ -52,17 +49,17 @@ def main(args):
     #     state = ["20", "25", "30", "600"]
     state_file_name = state[0] + "_" + state[1] + "_" + state[2] + "-" + state[3]
     pkl_save = {
-        "client1_ctr": [],  # 客户端1的对比损失的变化
+        "client1_ctr": [],
         "client2_ctr": [],
         "client3_ctr": [],
-        "client1_mmd": [],  # 客户端1的MK-MMD的变化
+        "client1_mmd": [],
         "client2_mmd": [],
         "client3_mmd": [],
-        "client1_tacc": [],  # 客户端1在目标域上的准确率变化
+        "client1_tacc": [],
         "client2_tacc": [],
         "client3_tacc": [],
-        "target_acc": [],  # 目标域的准确率列表
-        "target_best": 0   # 目标域最好的准确率
+        "target_acc": [],
+        "target_best": 0
     }
     pkl_file_name = state_file_name + args.log_file.replace(".log", "") + ".pkl"
     pkl_path = os.path.join(logSaveDir, pkl_file_name)

@@ -19,7 +19,7 @@ def preprocess_features(data):
         torch.Tensor of size N x pca: data PCA-reduced, whitened and L2-normalized
     """
     mean = data.mean(dim=0)
-    centered_data = data - mean  # 去均值
+    centered_data = data - mean
     # L2 normalization
     centered_data = F.normalize(centered_data, dim=1)
     return centered_data
@@ -43,8 +43,6 @@ def cos_sm(data):
     p = torch.sum(data, dim=0)/len(data)
     return p
 
-
-# 有标签的原型获取 均值原型
 def getFedByLabel(data_batch, label_batch, way="mean"):
     fed_dict = {}
     if len(data_batch) != len(label_batch):
