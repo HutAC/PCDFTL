@@ -1,4 +1,4 @@
-# Prototype contrastive-based decentralized federated transfer learning (PCDFTL) for intelligent fault diagnosis
+# Prototype contrastive-based decentralized federated transfer learning for intelligent fault diagnosis
 
 ------
 
