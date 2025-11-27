@@ -6,7 +6,7 @@
 @Software : PyCharm
 """
 from model.fed_model import FedModel, FedProModel, FedResModel, FedResModel2
-from utils.dataset import HUSTBearing, PUBearing, HUSTGearBox, JNBearing
+from utils.dataset import HUSTBearing, PUBearing, HUSTGearBox, JNBearing, RealBearing
 import torch.nn as nn
 import utils.utils as utils
 import logging
@@ -16,6 +16,7 @@ import copy
 class ClientBase(object):
     def __init__(self, args, state, device, return_feature=False, pre=1):
         self.args = args
+        self.noise = args.noise
         self.state = state
         self.pre = pre
         self.datasetClass = args.dataset_class
@@ -45,24 +46,29 @@ class ClientBase(object):
 
     def load_data(self):
         if self.datasetClass == 0:
-            self.dataset = HUSTBearing(data_dir=self.data_dir, state=self.state, pre=self.pre)
+            self.dataset = HUSTBearing(data_dir=self.data_dir,
+                                       state=self.state,
+                                       noise=self.noise,
+                                       pre=self.pre)
         elif self.datasetClass == 1:
-            self.dataset = PUBearing(data_dir=self.data_dir, state=self.state, pre=self.pre, cd=self.cd)
+            self.dataset = PUBearing(data_dir=self.data_dir,
+                                     state=self.state,
+                                     pre=self.pre,
+                                     noise=self.noise,
+                                     cd=self.cd)
         elif self.datasetClass == 2:
-            self.dataset = HUSTGearBox(data_dir=self.data_dir, state=self.state, pre=self.pre)
+            self.dataset = HUSTGearBox(data_dir=self.data_dir,
+                                       noise=self.noise,
+                                       state=self.state, pre=self.pre)
         elif self.datasetClass == 3:
-            self.dataset = JNBearing(data_dir=self.data_dir, state=self.state, pre=self.pre, cd=self.cd)
+            self.dataset = JNBearing(data_dir=self.data_dir,
+                                     state=self.state, noise=self.noise,
+                                     pre=self.pre, cd=self.cd)
+        elif self.datasetClass == 4:
+            self.dataset = RealBearing(data_dir=self.data_dir,
+                                       state=self.state, noise=self.noise,
+                                       pre=self.pre)
         self.trainLoader, self.valLoader, self.testLoader = self.dataset.load_data(self.args)
-
-    def load_target(self, state="3"):
-        if self.datasetClass == 0:
-            state = "60"
-            self.target = HUSTBearing(data_dir=self.args.data_dir, state=state, pre=self.pre)
-        elif self.datasetClass == 1:
-            state = "3"
-            self.target = PUBearing(data_dir=self.args.data_dir, state=state, pre=self.pre)
-        if self.target is not None:
-            self.t_loader, self.v_loader, self.te_loader = self.target.load_data(self.args)
 
     def download_model(self, serve_model):
         self.model.load_state_dict(copy.deepcopy(serve_model.state_dict()))
