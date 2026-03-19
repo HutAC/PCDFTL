@@ -2,7 +2,9 @@
 
 ------
 
-![PCDFTL](assets/overall_framework.png)
+**✨ Overall Framework**
+
+<img src="assets/overall_framework.png" alt="PCDFTL" width="90%">
 
 **📂 Code Structure**
 
@@ -24,7 +26,7 @@ PCDFTL/
 └── requirements.txt   # 依赖列表
 ```
 
-**📄Citation**
+**📄 Citation**
 
 If you find this code useful in your research, please cite our paper:
 
