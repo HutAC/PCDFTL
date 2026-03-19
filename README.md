@@ -2,21 +2,23 @@
 
 ------
 
+![PCDFTL](assets/overall_framework.png)
+
 **📂 Code Structure**
 
 ```
 PCDFTL/
 ├── entity/            # 客户端实体目录
-│   ├── client.py      # 源域客户端实体
-│   ├── clientBase.py  # 源域客户端基类实体
-│   ├── serve.py       # 目标域客户端实体
-│   ├── serveBase.py   # 目标域客户端基类实体
+│   ├── client.py      
+│   ├── clientBase.py  
+│   ├── serve.py       
+│   ├── serveBase.py   
 ├── loss/              # 损失函数目录
-│   ├── contrast.py    # 对比损失
-│   ├── mkmmd.py       # MK-MMD损失
+│   ├── contrast.py    
+│   ├── mkmmd.py       
 ├── utils/             # 工具类目录
-│   ├── analyzer.py    # 数据记录分析类
-│   ├── args.py        # 参数配置
+│   ├── analyzer.py    
+│   ├── args.py        
 │   ├── …………		  // 其余文件不做解释
 ├── PCDFTL.py          # 训练脚本
 └── requirements.txt   # 依赖列表
