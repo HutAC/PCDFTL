@@ -4,7 +4,7 @@
 
 **✨ Overall Framework**
 
-<img src="assets/overall_framework.png" alt="PCDFTL" width="90%">
+<div align="center">   <img src="assets/overall_framework.png" alt="PCDFTL" width="90%"> </div>
 
 **📂 Code Structure**
 
